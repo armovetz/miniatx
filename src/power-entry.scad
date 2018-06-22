@@ -19,7 +19,7 @@ module power_inlet() {
     
     BUTTON_HOLE_H = L_frame / 4;
     BUTTON_HOLE_W = W_frame - 0.4;
-    BUTTON_HOLE_DEPTH = 0.5 + OVERLAP;
+    BUTTON_HOLE_DEPTH = 0.5;
     
     difference() {
     union() {
@@ -49,7 +49,7 @@ module power_inlet() {
     
         
         
-        translate([L1 + L2 - BUTTON_HOLE_DEPTH + H_frame + OVERLAP, -(BUTTON_HOLE_W - W_frame) / 3, L_frame * (4/6)]) {
+        translate([L1 + L2 - BUTTON_HOLE_DEPTH + H_frame, -(BUTTON_HOLE_W - W_frame) / 3, L_frame * (4/6)]) {
             cube([BUTTON_HOLE_DEPTH , BUTTON_HOLE_W, BUTTON_HOLE_H]);
         }
         
