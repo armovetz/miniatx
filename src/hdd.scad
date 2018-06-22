@@ -2,8 +2,6 @@ use <include.scad>
 
 module hard_drive() {
     
-    
-    
     L = 14.68; // 5.782 inches
     W = 10.16; // 4.000 inches
     H = 2.61;  // 1.028 inches
@@ -22,15 +20,16 @@ module hard_drive() {
     SIDE_HOLE_Z = 0.63;// 0.250 inches
     
     // bottom mounting holes coords
-    BOTT_HOLE_1_X = 4.12; // 1.625
-    BOTT_HOLE_2_X = BOTT_HOLE_1_X + 4.44; // + 1.750
+    BOTT_HOLE_1_X = 4.12; // 1.625 inches
+    BOTT_HOLE_2_X = BOTT_HOLE_1_X + 4.44; // + 1.750 inches
     
     DY = 9.52; // 3.750 - distance between bottom holes by Y / width
     BOTT_HOLE_1_Y = (W - DY) / 2;
     BOTT_HOLE_2_Y = DY + (W - DY) / 2;
     
     difference() {
-        rounded_cuboid([L, W, H], 0.2); // body
+        // body
+        rounded_cuboid([L, W, H], 0.2); 
         
         // side holes
         for (x_i = [SIDE_HOLE_1_X, SIDE_HOLE_2_X, SIDE_HOLE_3_X]) {
@@ -49,13 +48,7 @@ module hard_drive() {
             }
         }}
         
-        // sata and power slots
-        
-        
-        //translate([0, 5.5, 0]) {
-        //    cube([1.5, 3.5, 0.5]);
-        //}
-        
+        // hole for sata and power slots
         translate([0, 1.0, 0]) {
             cube([1.5, 5.0, 0.5]);
         }
@@ -73,10 +66,5 @@ module hard_drive() {
 
 
 }
-
-
-
-
-
 
 hard_drive();
