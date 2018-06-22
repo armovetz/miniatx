@@ -106,7 +106,7 @@ module transformer() {
     cube([TRANS_L, TRANS_W, TRANS_H]);
 }
 
-module power_inlet() {
+module inlet_110v() {
     
     BODY_L = 1.5;
     BODY_W = 1.0;
@@ -131,7 +131,7 @@ module power_inlet() {
     
 }
 
-module power_outlet() {
+module outlet_12v() {
     
     BODY_L = 1.0;
     BODY_W = 1.0;
@@ -189,11 +189,11 @@ module acdc() {
     
     
     translate([8.0, 0.1, 0]) {
-        power_inlet();
+        inlet_110v();
     }
     
     translate([0.5, (MB_W - 1.0) / 2, 0]) {
-        power_outlet();
+        outlet_12v();
     }
 }
 
