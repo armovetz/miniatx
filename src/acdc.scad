@@ -1,7 +1,8 @@
 use <include.scad>
 
-OVERLAP = 1;
+OVERLAP = 1.0;
 
+// board dimensions
 MB_L = 106.4;
 MB_W = 57.0;
 MB_H = 1.0;
@@ -10,8 +11,6 @@ SCREW_DISTANCE_X = 98.2;
 SCREW_DISTANCE_Y = 47.1;
 
 module acdc_base() {
-        // board dimensions
-        
     
     CORNER_R = 1.0;     // rounded corners radius
     
@@ -111,7 +110,6 @@ module inlet_110v() {
     HOLE_R = 1.5;
     HOLE_H = BODY_H * (2/3);
     
-    //HOLE_SHIFT_X = ;
     HOLE_SHIFT_Y = 3.0;
     HOLE_SHIFT_Z = BODY_H / 2;
     
@@ -135,9 +133,7 @@ module outlet_12v() {
     
     HOLE_R = 1.5;
     HOLE_H = BODY_H * (2/3);
-    
-    //HOLE_SHIFT_X = ;
-    //HOLE_SHIFT_Y = 0.3;
+
     HOLE_SHIFT_Z = BODY_H / 2;
     
     difference() {
@@ -165,13 +161,13 @@ module acdc() {
     
     acdc_base();
     
-    translate([20.0,0,0]) {
+    translate([20.0, 0, 0]) {
     rotate([0, 90.0 ,0]) { 
     rotate([0, 0, 90.0]) {
             radiator_1();
     }}}
     
-    translate([70.0,0,0]) {
+    translate([70.0, 0, 0]) {
     rotate([0, 90 ,0]) { 
     rotate([0, 0, 90]) {
             radiator_2();
