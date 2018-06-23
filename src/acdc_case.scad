@@ -3,18 +3,18 @@ use <include.scad>;
 
 
 // these are taken from acdc.scad
-MB_L = 10.64;
-MB_W = 5.70;
-MB_H = 0.1;
+MB_L = 106.4;
+MB_W = 57.0;
+MB_H = 1.0;
 
-SCREW_DISTANCE_X = 9.82;
-SCREW_DISTANCE_Y = 4.71;
+SCREW_DISTANCE_X = 98.2;
+SCREW_DISTANCE_Y = 47.1;
 //
 
-ACDC_H = 3.5;
+ACDC_H = 35.0;
 
-CASE_THICKNESS = 0.4;
-CASE_GAP = 0.1;
+CASE_THICKNESS = 4.0;
+CASE_GAP = 1.0;
 CASE_OUTER_L = MB_L   + CASE_GAP + CASE_THICKNESS;
 CASE_OUTER_W = MB_W   + CASE_GAP + CASE_THICKNESS;
 CASE_OUTER_H = ACDC_H + CASE_GAP + CASE_THICKNESS;
@@ -26,7 +26,7 @@ CASE_INNER_H = ACDC_H + CASE_GAP;
 ACDC_SHIFT_X = (CASE_OUTER_L - MB_L) / 2;
 ACDC_SHIFT_Y = (CASE_OUTER_W - MB_W) / 2;
 
-CORNER_R = 0.1;
+CORNER_R = 1.0;
 
 
 module body() {
@@ -42,11 +42,11 @@ module body() {
 
 module leg() {
     LEG_L = CASE_INNER_H - CASE_GAP;
-    LEG_R = 0.3;
-    BOT_FOOT_R = 0.4;
-    BOT_FOOT_H = 0.4;
-    TOP_FOOT_R = 0.4;
-    TOP_FOOT_H = 0.4;
+    LEG_R = 3.0;
+    BOT_FOOT_R = 4.0;
+    BOT_FOOT_H = 4.0;
+    TOP_FOOT_R = 4.0;
+    TOP_FOOT_H = 4.0;
     
     BOT_FOOT_RD = BOT_FOOT_R - LEG_R;
     TOP_FOOT_RD = TOP_FOOT_R - LEG_R;
@@ -96,7 +96,7 @@ module cell() {
         
         SIDE_ROWS_NUMB = 4;
         SIDE_COLS_NUMB = 5;
-        SIDE_HOLE_L = 0.3;
+        SIDE_HOLE_L = 3.0;
         SIDE_HOLE_H = SIDE_HOLE_L;
         for (i = [0 : 1: SIDE_ROWS_NUMB - 1]) {
         for (j = [1 : 1: SIDE_COLS_NUMB - 2]) {
@@ -115,7 +115,7 @@ module cell() {
         // front fan holes
         FRONT_ROWS_NUMB = 4;
         FRONT_COLS_NUMB = 8;
-        FRONT_HOLE_L = 0.3;
+        FRONT_HOLE_L = 3.0;
         FRONT_HOLE_H = FRONT_HOLE_L;
         for (i = [0 : 1: FRONT_ROWS_NUMB - 1]) {
         for (j = [1 : 1: FRONT_COLS_NUMB - 2]) {
@@ -135,8 +135,6 @@ module cell() {
     
     
 }
-
-//leg();
 
 module acdc_case() {
     
@@ -183,7 +181,7 @@ module acdc_case() {
             //translate([LEG_4_X, LEG_4_Y, CASE_GAP + MB_H]) { leg();}
         }
         
-        SCREW_R = 0.2;
+        SCREW_R = 2.0;
         
         translate([SCREW_HOLE_1_X, SCREW_HOLE_1_Y, CASE_GAP + MB_H]) { cylinder(r = SCREW_R, h = CASE_OUTER_H, $fn = 20);}
         translate([SCREW_HOLE_2_X, SCREW_HOLE_2_Y, CASE_GAP + MB_H]) { cylinder(r = SCREW_R, h = CASE_OUTER_H, $fn = 20);}
@@ -193,8 +191,8 @@ module acdc_case() {
     }
 }
 
-translate([ACDC_SHIFT_X, ACDC_SHIFT_Y, -2]) {
-#    acdc();
+translate([ACDC_SHIFT_X, ACDC_SHIFT_Y, 0]) {
+    acdc();
 }
 
 
