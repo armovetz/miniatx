@@ -32,3 +32,26 @@ module rounded_cuboid(dimensions, CORNER_R) {
     }
 }
 
+module rounded_corner_flat(r, fn) {
+    /*** 
+        triangle corner size r x r, rounded by circle with radius = r
+    ***/
+    difference() {
+        square(r);
+        translate([r, r, 0]) { circle(r, $fn = fn);}
+    }
+}
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
