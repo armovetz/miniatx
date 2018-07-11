@@ -19,7 +19,7 @@ rotate([0, 0, -90]) {
 
 translate([10.5, 16.5, 0]) {
 rotate([0, 0, -90]) {
-    acdc();
+    scale([0.1, 0.1, 0.1]) {acdc();}
 }}
 
 translate([0, 0, 3.5]) {
