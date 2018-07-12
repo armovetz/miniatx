@@ -15,7 +15,8 @@ SCREW_DISTANCE_X = 98.2;
 SCREW_DISTANCE_Y = 47.1;
 
 // total height of acdc case
-ACDC_H = 35.0;
+ACDC_H_screw_flow = 2.0; // we can play with this depending on screws length
+ACDC_H = 33.0 + ACDC_H_screw_flow;
 
 ACDC_BOARD_H = 1.5; // between 1.5 and 2.0 mms - thickness of acdc bottom board
 SOLDER_GAP = 2.0;
@@ -156,6 +157,40 @@ module drill_vent_front() {
     
 }
 
+module drill_vent_top() {
+    
+    HOLE_SHIFT_Y = 10.0;
+    HOLE_SHIFT_X = 10.0;
+    
+    TOP_HOLE_L = 21.0;
+    TOP_HOLE_H = 13.0;
+    TOP_HOLE_R = 1.0;
+    
+    TOP_ROWS_NUMB = 3;
+    TOP_COLS_NUMB = 4;
+
+    top_x_start = HOLE_SHIFT_X;
+    top_x_end   = CASE_OUTER_L - HOLE_SHIFT_X;
+    top_d_x = (top_x_end - top_x_start) / TOP_COLS_NUMB;
+    top_y_start = HOLE_SHIFT_Y;
+    top_y_end   = CASE_OUTER_W - HOLE_SHIFT_Y;
+    top_d_y = (top_y_end - top_y_start) / TOP_ROWS_NUMB;
+    
+    for (column = [0 : 1 : TOP_COLS_NUMB - 1]) {
+    for (row    = [0 : 1 : TOP_ROWS_NUMB - 1]) {
+        x = top_x_start + column*top_d_x    + top_d_x/2 - TOP_HOLE_L/2;
+        y = top_y_start + row*top_d_y       + top_d_y/2 - TOP_HOLE_H/2;
+
+        translate([x, y, CASE_INNER_H]) {
+            rounded_cuboid([TOP_HOLE_L, TOP_HOLE_H, CASE_THICKNESS + 2], TOP_HOLE_R);
+        }
+    }
+    }
+    
+
+    
+}
+
 module acdc_case() {
     
     // legs
@@ -190,8 +225,9 @@ module acdc_case() {
         union() {
             difference() {
                 body();
-                //drill_vent_front();
-                //drill_vent_side();
+                drill_vent_front();
+                drill_vent_side();
+                drill_vent_top();
             }
             LEG_H = CASE_INNER_H - LEG_Z;
             LEG_L = (SCREW_SHIFT_X + CASE_GAP)*2;
